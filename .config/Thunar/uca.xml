@@ -1,0 +1,94 @@
+<?xml encoding="UTF-8" version="1.0"?>
+<actions>
+<action>
+	<icon>com.gexperts.Tilix-symbolic</icon>
+	<name>Open in a terminal</name>
+	<unique-id>1502927007287128-1</unique-id>
+	<command>tilix -w %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>help-browser-symbolic</icon>
+	<name>Compare</name>
+	<unique-id>1502927204564960-5</unique-id>
+	<command>meld %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+	<text-files/>
+</action>
+<action>
+	<icon>gedit-symbolic</icon>
+	<name>Edit as root</name>
+	<unique-id>1502927110239668-3</unique-id>
+	<command>gksu gvim %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<text-files/>
+</action>
+<action>
+	<icon>preferences-system-search-symbolic</icon>
+	<name>Search files inside…</name>
+	<unique-id>1502927159501768-4</unique-id>
+	<command>catfish --path=%f%d</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>preferences-desktop-sharing-symbolic</icon>
+	<name>Scan for viruses</name>
+	<unique-id>1502927236496900-6</unique-id>
+	<command>clamtk %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>preferences-system-network-symbolic</icon>
+	<name>Share Folder</name>
+	<unique-id>1502927292104205-7</unique-id>
+	<command>net usershare add %n %f &quot;&quot; Everyone:R guest_ok=y</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>help-contents-symbolic</icon>
+	<name>Copy Contents to Clipboard</name>
+	<unique-id>1502927355066278-8</unique-id>
+	<command>cat &quot;%F&quot; | xclip -i -selection clipboard</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<text-files/>
+</action>
+<action>
+	<icon>accessories-text-editor-symbolic</icon>
+	<name>Slugify Filename</name>
+	<unique-id>1502927420157491-9</unique-id>
+	<command>for file in %N; do mv &quot;$file&quot; &quot;$(echo &quot;$file&quot; | tr -s &apos; &apos; | tr &apos; A-Z&apos; &apos;-a-z&apos; | tr -s &apos;-&apos; | tr -c &apos;[:alnum:][:cntrl:].&apos; &apos;-&apos;)&quot;; done</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+</actions>
