@@ -1,0 +1,288 @@
+set $mod Mod4
+
+#
+set $monitor1 "DP1-1"
+set $monitor2 "DP1-2"
+set $monitor3 "DP2"
+
+#
+font pango:System San Francisco Display, FontAwesome 12
+gaps inner 5
+gaps outer 5
+new_window none
+smart_borders on
+
+# colors
+set $base00 #101218
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
+set $bg-color             #2f343f
+set $inactive-bg-color    #2f343f
+set $text-color           #f3f4f5
+set $inactive-text-color  #676e7d
+set $urgent-bg-color      #e53935
+
+# window
+#                         border  background text    indicator
+client.focused          $base01 $base01    $base07 $base0F
+client.focused_inactive $base02 $base02    $base03 $base0F
+client.unfocused        $base02 $base02    $base03 $base0F
+client.urgent           $base02 $base08    $base00 $base0F
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec termite -e "tmux -2"
+bindsym $mod+Return exec termite
+# bindsym $mod+Return exec tilix
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+# rofi
+bindsym $mod+d exec rofi -show run -lines 5 -eh 1 -font "System SanFrancisco Display 13" -bw 3 -padding 10 -bg "#ffffff" -fg "#666666" -hlbg "#009acd" -separator-style none -hide-scrollbar
+#bindsym $mod+d exec rofi -show run -width 2560 -fg "#B0E670" -bg "#14161F" -hlfg "#14161F" -hlbg "#B0E670" -bc "#14161F" -location 0 -lines 19 -bw 0 -font "MonacoB 16" -padding 770 -separator-style none -opacity 80
+
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+Shift+j focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+Shift+k focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# workspaces
+set $workspace1 "1: "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
+set $workspace10 "10: "
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# monitors
+workspace $workspace1 output $monitor1
+workspace $workspace2 output $monitor1
+workspace $workspace3 output $monitor1
+workspace $workspace4 output $monitor2
+workspace $workspace5 output $monitor2
+workspace $workspace6 output $monitor2
+workspace $workspace7 output $monitor2
+workspace $workspace8 output $monitor3
+workspace $workspace9 output $monitor3
+workspace $workspace10 output $monitor3
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec /home/grzesio/.config/i3/exit_menu.sh
+
+#bindsym $mod+p exec "i3lock -i /home/grzesio/Downloads/beksinski1.png -p default -n"
+#exec xscreensaver &
+#bindsym $mod+p exec xscreensaver-command -lock
+bindsym $mod+p exec /home/grzesio/.config/i3/i3lock-fancy-multimonitor/lock
+
+# resize window (you can also use the mouse for that)
+mode "  " {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "  "
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        output $monitor1
+        position top
+        status_command py3status -c $HOME/.config/i3/bars/left.conf
+        colors {
+          separator $base03
+          background $base01
+          statusline $base05
+
+          focused_workspace  $base01 $base01    $base07
+          active_workspace   $base01 $base02    $base03
+          inactive_workspace $base01 $base01    $base03
+          urgent_workspace   $base01 $base01    $base08
+        }
+}
+
+bar {
+        output $monitor2
+        position top
+        status_command py3status -c $HOME/.config/i3/bars/mid.conf
+        #status_command i3status -c $HOME/.config/i3/i3status.conf
+        tray_output primary
+        colors {
+          separator $base03
+          background $base01
+          statusline $base05
+
+          focused_workspace  $base01 $base01    $base07
+          active_workspace   $base01 $base02    $base03
+          inactive_workspace $base01 $base01    $base03
+          urgent_workspace   $base01 $base01    $base08
+        }
+}
+
+bar {
+        output $monitor3
+        position top
+        status_command py3status -c $HOME/.config/i3/bars/rright.conf
+        tray_output primary
+        colors {
+          separator $base03
+          background $base01
+          statusline $base05
+
+          focused_workspace  $base01 $base01    $base07
+          active_workspace   $base01 $base02    $base03
+          inactive_workspace $base01 $base01    $base03
+          urgent_workspace   $base01 $base01    $base08
+        }
+}
+
+# multimedia keys
+# http://faq.i3wm.org/question/3747/enabling-multimedia-keys/
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+exec --no-startup-id sleep 2 && /home/grzesio/.screenlayout/screenLayout3.sh
+#exec /home/grzesio/.fehbg &
+exec_always feh --bg-scale $HOME/Pictures/wallhaven-501181.jpg
+exec --no-startup-id nm-applet
+exec compton &
+#exec xmodmap /home/grzesio/.Xmodmap
+exec setxkbmap pl -option 'caps:escape'
+
+# Monitors
+bindsym $mod+F1 exec /home/grzesio/.screenlayout/1m.sh
+bindsym $mod+F2 exec /home/grzesio/.screenlayout/2m.sh
+bindsym $mod+F3 exec /home/grzesio/.screenlayout/3m_work.sh
